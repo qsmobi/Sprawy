@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Tikety" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=sekretynauki.pl;Initial Catalog=Tikety;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TiketyConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Sprawa" Member="Sprawas">
+    <Type Name="Sprawa">
+      <Column Name="IdSprawy" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nazwa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Opis" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Termin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DataDodania" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IdUzytRealizuje" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Uzytkownik" Member="Uzytkowniks">
+    <Type Name="Uzytkownik">
+      <Column Name="IDUzyt" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nazwisko" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Imie" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Telefon" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Agent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Uzytkownik_Wiadomosc" Member="Wiadomoscs" ThisKey="IDUzyt" OtherKey="IdUzyt" Type="Wiadomosc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Wiadomosc" Member="Wiadomoscs">
+    <Type Name="Wiadomosc">
+      <Column Name="IdWiadomosci" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdSprawy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tresc" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Zalacznik" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdUzyt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Uzytkownik_Wiadomosc" Member="Uzytkownik" ThisKey="IdUzyt" OtherKey="IDUzyt" Type="Uzytkownik" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+</Database>
